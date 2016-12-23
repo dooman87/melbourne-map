@@ -1,0 +1,21 @@
+version: '2'
+services:
+  postgis:
+    build: ./postgis
+    volumes:
+      - ./data:/var/lib/postgresql/data
+      - ./status:/status
+    environment:
+      - POSTGRES_DB=gis
+  render:
+    build: ./renderer
+    volumes:
+      - ./renderer/map_data:/map_data
+      - ./renderer/scripts:/scripts
+    volumes_from:
+      - postgis:ro
+    ports:
+      - "8080:8080"
+      - "9090:9090"
+    depends_on:
+      - postgis
