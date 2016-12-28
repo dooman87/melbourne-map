@@ -1,16 +1,16 @@
 #!/usr/bin/env bash
 
-rm /status/DB_INITED
-
 sh /scripts/compile_style.sh
 
-while [ ! -e /status/DB_INITED ]
+while [ ! -e /var/lib/postgresql/data/DB_INITED ]
 do
-sleep 1
+sleep 5
 echo "Waiting while database is initializing..."
 done
 
-echo "DB is ready, just waiting while DB is restarting..."
+#Have to wait because once DB created then osm2pgsql restarting postgres.
+#TODO: Using pg_isready
+echo "DB successfully created, waiting for restart"
 sleep 60
 
 echo "Starting renderer"

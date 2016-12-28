@@ -4,10 +4,9 @@ services:
     build: ./postgis
     volumes:
       - ./data:/var/lib/postgresql/data
-      - ./status:/status
     environment:
       - POSTGRES_DB=gis
-  render:
+  renderer:
     build: ./renderer
     volumes:
       - ./renderer/map_data:/map_data
@@ -19,3 +18,9 @@ services:
       - "9090:9090"
     depends_on:
       - postgis
+  web:
+    image: nginx:1.11-alpine
+    volumes:
+      - ./web:/usr/share/nginx/html
+    ports:
+      - "8888:80"
