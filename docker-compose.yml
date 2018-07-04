@@ -2,12 +2,14 @@ version: '2'
 services:
   postgis:
     build: ./postgis
+    image: akikinyan/osm-postgis:latest
     volumes:
       - ./data:/var/lib/postgresql/data
     environment:
       - POSTGRES_DB=gis
   renderer:
     build: ./renderer
+    image: akikinyan/osm-renderer:latest
     volumes:
       - ./renderer/map_data:/map_data
       - ./renderer/scripts:/scripts
