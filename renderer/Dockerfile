@@ -4,6 +4,9 @@ RUN apt-get update && \
     apt-get install -y git curl unzip node-carto mapnik-utils fontconfig && \
     rm -rf /var/lib/apt/lists/*
 
+COPY fonts/VLGothic/VL-Gothic-Regular.ttf /usr/share/fonts/truetype
+COPY fonts/VLGothic/VL-PGothic-Regular.ttf /usr/share/fonts/truetype
+
 WORKDIR /
 RUN wget https://github.com/adobe-fonts/source-sans-pro/archive/2.020R-ro/1.075R-it.tar.gz && \
     tar -xzvf 1.075R-it.tar.gz && \
@@ -13,7 +16,7 @@ RUN wget https://github.com/adobe-fonts/source-sans-pro/archive/2.020R-ro/1.075R
     rm 1.075R-it.tar.gz && \
     rm -rf source-sans-pro-2.020R-ro-1.075R-it
 
-RUN git clone https://github.com/dooman87/openstreetmap-carto.git
+RUN git clone https://github.com/akikinyan/openstreetmap-carto.git
 WORKDIR /openstreetmap-carto
 ADD shapes/ data/
 RUN shapeindex --shape_files \

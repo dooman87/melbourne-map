@@ -11,7 +11,7 @@ done
 #Have to wait because once DB created then osm2pgsql restarting postgres.
 #TODO: Using pg_isready
 echo "DB successfully created, waiting for restart"
-sleep 60
+sleep 10
 
 echo "Starting renderer"
 sh /scripts/run_render.sh
