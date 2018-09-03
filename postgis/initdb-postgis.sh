@@ -24,6 +24,6 @@ EOSQL
 done
 
 #import Melbourne city
-osm2pgsql --style /openstreetmap-carto/openstreetmap-carto.style -d gis -U postgres -k --slim /melbourne_australia.osm.pbf
+osm2pgsql --style /openstreetmap-carto/openstreetmap-carto.style -d gis -U postgres -k --slim /Melbourne.osm.pbf
 
 touch /var/lib/postgresql/data/DB_INITED
